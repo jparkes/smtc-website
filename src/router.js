@@ -11,9 +11,15 @@ const routes = [
 		component: load('Home'),
   },
 	{
-		path: '/state',
-		name: 'state',
-		component: load('State'),
+		path: '/states',
+		name: 'states',
+		component: load('States'),
+	},
+  {
+    path: '/states/:state',
+    name: 'state',
+    component: load('State'),
+    props: true,
   },
 	{
 		path: '/county',
