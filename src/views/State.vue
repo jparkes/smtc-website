@@ -21,9 +21,9 @@ export default {
   }),
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      vm.state = states.find(state => state.abbreviation.toLowerCase() === vm.stateId);
+      vm.state = states.find(state => state.abbreviation.toLowerCase() === vm.stateId)
 
-      if (!vm.state) {
+      if (!vm.state || !vm.state.enabled) {
         vm.$router.push({ name: 'home' })
       }
     })
