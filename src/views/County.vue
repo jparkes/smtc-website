@@ -22,7 +22,7 @@ export default {
     next(vm => {
       let state = states.find(state => state.abbreviation.toLowerCase() === vm.stateId);
 
-      if (!state.enabled || !state.counties.find(county => county.toLowerCase() === vm.county)) {
+      if (!state.enabled || !state.counties.find(county => county.replace(/\s+/g, '-').replace(/'+/g, '').toLowerCase() === vm.county)) {
         vm.$router.push({ name: 'home' })
       }
     })
