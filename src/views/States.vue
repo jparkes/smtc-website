@@ -13,8 +13,8 @@ export default {
     states,
   }),
   methods: {
-    handleStateClick({ name }) {
-      this.$router.push({ name: 'state', params: { state: name.toLowerCase() } })
+    handleStateClick({ abbreviation }) {
+      this.$router.push({ name: 'state', params: { stateId: abbreviation.toLowerCase() } })
     },
   },
 }

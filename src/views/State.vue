@@ -1,6 +1,8 @@
 <template>
-  <div>State</div>
-  <div v-if="test">{{ test.abbreviation }}</div>
+  <template v-if="state">
+    <div>{{ state.abbreviation }}</div>
+    <div v-for="county in state.counties" :key="county" @click="handleCountyClick(county)">{{ county }}</div>
+  </template>
 </template>
 
 <script>
@@ -8,17 +10,28 @@ import states from '../states'
 
 export default {
   props: {
-    state: {
+    stateId: {
       required: true,
       type: String,
     },
   },
   data: () => ({
+    state: null,
     states,
-    test: null,
   }),
-  beforeMount() {
-    this.test = states.find(state => state.name.toLowerCase() === this.state);
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      vm.state = states.find(state => state.abbreviation.toLowerCase() === vm.stateId);
+
+      if (!vm.state) {
+        vm.$router.push({ name: 'home' })
+      }
+    })
+  },
+  methods: {
+    handleCountyClick(county) {
+      this.$router.push({ name: 'county', params: { county: county.replace(/\s+/g, '-').replace(/'+/g, '').toLowerCase() } })
+    },
   },
 }
 </script>

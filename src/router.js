@@ -16,18 +16,19 @@ const routes = [
 		component: load('States'),
 	},
   {
-    path: '/states/:state',
+    path: '/states/:stateId',
     name: 'state',
     component: load('State'),
     props: true,
+	},
+  {
+    path: '/states/:stateId/:county',
+    name: 'county',
+    component: load('County'),
+    props: true,
   },
 	{
-		path: '/county',
-		name: 'county',
-		component: load('County'),
-  },
-	{
-		path: '/cemetery',
+		path: '/cemetery/:cemeteryId',
 		name: 'cemetery',
 		component: load('Cemetery'),
 	},
