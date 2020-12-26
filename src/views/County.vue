@@ -1,6 +1,7 @@
 <template>
   <div>County</div>
   <div>{{ county }}</div>
+  <div @click="handleCemeteryClick()">Cemetery Example</div>
 </template>
 
 <script>
@@ -26,6 +27,11 @@ export default {
         vm.$router.push({ name: 'home' })
       }
     })
+  },
+  methods: {
+    handleCemeteryClick() {
+      this.$router.push({ name: 'cemetery', params: { cemeteryId: 1 } })
+    },
   },
 }
 </script>
